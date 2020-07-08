@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daegu Opera House</title>
+    <link rel="stylesheet" href="../css/daegu-opera.css">
+    <script src="js/all.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script> -->
+    <!-- <script src="/daegu-opera/opera/js/jquery.bxslider.min.js"></script>
+    <script src="/daegu-opera/opera/js/jquery.bxslider.min.css "></script> -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+</head>
+
+<body>
+
+    <div class="wrap-all">
+        <header class="main-header">
+            <div class="logo1">
+                <img src="../image/logo.png" alt="logo1">
+            </div>
+            <div class="logo2">
+                <img src="../image/logo_un.png" alt="logo2">
+            </div>
+            <div class="nav-container">
+                <div class="sub-navi">
+                    <ul>
+                        <li><a href="">home</a></li>
+                        <li><a href="">cocoa</a></li>
+                        <li><a href="">login</a></li>
+                        <li><a href="">join</a></li>
+                    </ul>
+
+                    <select name="" id="" class="language">
+                        <option selected>Kor</option>
+                        <option>Eng</option>
+                    </select>
+
+                </div>
+
+                <div class="main-navi">
+                    <ul>
+                        <li><a href="">공연안내<br>performance</a></li>
+                        <li><a href="">티켓예매<br>ticket</a></li>
+                        <li><a href="">아카데미<br>academy</a></li>
+                        <li><a href="">대관안내<br>rental</a></li>
+                        <li><a href="">이용안내<br>guide</a></li>
+                    </ul>
+
+                    <ul>
+                        <li><i class="fas fa-calendar-alt"></i></li>
+                        <li><i class="fas fa-search"></i></li>
+                        <li><i class="fas fa-align-justify"></i></li>
+                    </ul>
+
+                </div>
+            </div>
+        </header>
+
+        <div class="side-bar">
+            <aside>
+                <p><a href=""> 기관소개 </a></p>
+                <ul>
+                    <li><a href=""><i id="a" class="fab fa-facebook-f"></i></a></li>
+                    <li><a href=""><i id="b" class="fab fa-instagram"></i></a></li>
+                    <li><a href=""><i id="c" class="fab fa-youtube"></i></a></li>
+                    <li><a href=""><i id="d" class="fas fa-play"></i></a></li>
+                    <li><a href=""><i id="e" class="far fa-image"></i></a></li>
+                </ul>
+            </aside>
+        </div>
+
+        <div class="slide">
+            <main>
+                <div class="main-slide">
+                    <ul class="bxslider">
+                        <li><img src="../image/img_carmen01.jpg" alt="카르멘"></li>
+                        <li><img src="../image/img_festival03.jpg" alt="페스티벌"></li>
+                        <li><img src="../image/img_matine01.jpg" alt="마티네"></li>
+                    </ul>
+
+                </div>
+                <h2>공연일정</h2>
+                <div class="slide-wrap">
+                    <ul class="mini-slide">
+                        <li>
+                            <img src="../image/mini-slide/mini-slide0.png" alt="0">
+                        </li>
+                        <li>
+                            <img src="../image/mini-slide/mini-slide1.png" alt="1">
+                        </li>
+                        <li>
+                            <img src="../image/mini-slide/mini-slide2.png" alt="2">
+                        </li>
+                        <li>
+                            <img src="../image/mini-slide/mini-slide3.png" alt="3">
+                        </li>
+                        <li>
+                            <img src="../image/mini-slide/mini-slide4.png" alt="4">
+                        </li>
+                        <li>
+                            <img src="../image/mini-slide/mini-slide5.png" alt="5">
+                        </li>
+                        <li>
+                            <img src="../image/mini-slide/mini-slide6.png" alt="6">
+                        </li>
+                    </ul>
+                </div>
+            </main>
+        </div>
+
+        <footer>
+            <div class="footer">
+                <h1>bonnie's Clone Coding</h1>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Mini-Slide -->
+    <script>
+        function moveSlide() {
+            const margin = 10;
+            const imgSize = $(".mini-slide > li > img").width();
+            // const liwidth = $(".slide > li").width(); //이미지 넓이 구하기
+
+            $(".mini-slide").animate({
+                //     'margin-left' : "200px"
+                // }, 2000, replace) //200px씩 2초씩 왼쪽에서 이동, replace 실행
+                'margin-left': -imgSize
+            }, 2000, replace)
+
+        }
+
+        function replace() {
+            const li = $(".mini-slide > li:eq(0)");
+            li.remove();
+            $(".mini-slide").css("margin-left", "0px");
+            $(".mini-slide").append(li)
+        }
+        // console.log("마진과 li의 크기", margin,liwidth);
+
+        // moveSlide();
+        let slide = setInterval(function () {
+            moveSlide();
+        }, 2000);
+        $(".mini-slide > li").mouseover(function () {
+            clearInterval(slide);
+        }).mouseleave(function () {
+            slide = setInterval(function () {
+                moveSlide();
+            }, 2000);
+        })
+    </script>
+
+    <!-- Main-Slide -->
+    <script>
+        $(document).ready(function () {
+            $('.bxslider').bxSlider({
+                auto: true,
+                controls: false
+            });
+        });
+    </script>
+
+    <!-- Side Scroll Bar -->
+    <script>
+        $(window).scroll(function () {
+            const scroll = $(document).scrollTop().toFixed();
+
+            $(".scroll-text").text(scroll);
+            if (100 < scroll) {
+                $(".side-bar").css("top", "0px")
+            } else {
+                $(".side-bar").css("top", "100px")
+            }
+        })
+    </script>
+</body>
+
+</html>
